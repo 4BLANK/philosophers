@@ -27,8 +27,6 @@ void init_params(int ac, char **av)
 int main(int ac, char **av)
 {
   if(ac == 5 || ac == 6)
-  {
     init_params(ac, av);
-  }
   return (1);
 }

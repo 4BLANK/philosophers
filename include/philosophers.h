@@ -44,4 +44,6 @@ void *start(void *p);
 void join_philosophers();
 long long fix_time();
 void death_check(philosopher_t *p);
+int even_philospher(philosopher_t *p);
+int odd_philosopher(philosopher_t *p);
 params_t *params();

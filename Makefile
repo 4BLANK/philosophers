@@ -1,2 +1,2 @@
 all:
-	gcc -fsanitize=thread -g srcs/* -o philo
+	gcc -g srcs/* -o philo
