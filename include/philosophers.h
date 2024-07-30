@@ -46,4 +46,7 @@ long long fix_time();
 void death_check(philosopher_t *p);
 int even_philospher(philosopher_t *p);
 int odd_philosopher(philosopher_t *p);
+void clean_philosophers();
+void clean_forks();
+int clean();
 params_t *params();

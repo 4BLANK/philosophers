@@ -1,6 +1,4 @@
 #include "../include/philosophers.h"
-#include <pthread.h>
-#include <unistd.h>
 
 void init_params(int ac, char **av)
 {
@@ -27,6 +25,9 @@ void init_params(int ac, char **av)
 int main(int ac, char **av)
 {
   if(ac == 5 || ac == 6)
+  {
     init_params(ac, av);
-  return (1);
+    clean();
+  }
+  return (0);
 }

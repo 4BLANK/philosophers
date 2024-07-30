@@ -13,7 +13,7 @@ void create_forks()
     params()->list_f[i] = malloc((sizeof(fork_t)) * 1);
     if (!(params()->list_f[i]))
     {
-      //TODO: clean array
+      clean_forks();
       return ;
     }
     params()->list_f[i]->id = i + 1;
@@ -29,12 +29,15 @@ void create_philosopher_thread(int i)
     params()->list_p[i]->left = params()->list_f[params()->number_of_philosophers - 1];
   else
     params()->list_p[i]->left = params()->list_f[i - 1];
-  // FIX THE NUMBER ONE PHILOSOPHER
   params()->list_p[i]->right = params()->list_f[i];
   params()->list_p[i]->number_of_meals = 0;
   params()->list_p[i]->last_meal = 0;
   if (pthread_create(&(params()->list_p[i]->thread), NULL, start, (params()->list_p[i])))
-    return ; // TODO: clean arrays
+  {
+    join_philosophers();
+    clean();
+    return ;
+  }
 }
 
 void create_philosophers()
@@ -49,14 +52,14 @@ void create_philosophers()
     if (!(params()->list_p[i]))
     {
       params()->list_p[i] = NULL;
-      //TODO: clean array
+      clean();
       return ;
     }
     params()->list_p[i]->id = i + 1;
     create_philosopher_thread(i);
     i++;
   }
-  params()->list_f[i] = NULL;
+  params()->list_p[i] = NULL;
 }
 
 void join_philosophers()
@@ -67,7 +70,7 @@ void join_philosophers()
   while (i < params()->number_of_philosophers)
   {
     if(pthread_join(params()->list_p[i]->thread, NULL)) 
-      return ; // TODO clean arrays
+      return ;
     i++;
   }
 }

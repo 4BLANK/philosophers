@@ -1,9 +1,18 @@
 #include "../include/philosophers.h"
-#include <pthread.h>
 
-// to revisit
 int pick_forks(philosopher_t *p)
 {
+  if (params()->number_of_philosophers == 1)
+  {
+    pthread_mutex_lock(&(p->left->mtx));
+    pthread_mutex_lock(&(params()->print_lock));
+    printf("%lld philosopher %d picked a fork\n", fix_time(), p->id);
+    pthread_mutex_unlock(&(params()->print_lock));
+    while (!(params()->death))
+      death_check(p);
+    pthread_mutex_unlock(&(p->left->mtx));
+    return (1);
+  }
   if (p->id % 2 != 0)
   {
     if (odd_philosopher(p))
