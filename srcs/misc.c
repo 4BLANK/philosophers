@@ -51,9 +51,7 @@ int odd_philosopher(philosopher_t *p)
   pthread_mutex_lock(&(params()->death_note));
   if (params()->death)
   {
-    pthread_mutex_unlock(&(params()->death_note));
-    pthread_mutex_unlock(&(params()->print_lock));
-    pthread_mutex_unlock(&(p->left->mtx));
+    odd_philosopher_first_con(p);
     return (1);
   }
   pthread_mutex_unlock(&(params()->death_note));
@@ -66,20 +64,13 @@ int odd_philosopher(philosopher_t *p)
     pthread_mutex_unlock(&(p->left->mtx));
     return (1);
   }
-  pthread_mutex_unlock(&(params()->death_note));
-  pthread_mutex_lock(&(p->right->mtx));
-  pthread_mutex_lock(&(params()->print_lock));
-  pthread_mutex_lock(&(params()->death_note));
+  odd_philosopher_non_con(p);
   if (params()->death)
   {
-    pthread_mutex_unlock(&(params()->death_note));
-    pthread_mutex_unlock(&(p->left->mtx));
-    pthread_mutex_unlock(&(params()->print_lock));
-    pthread_mutex_unlock(&(p->right->mtx));
+    odd_philosopher_second_con(p);
     return (1);
   }
-  pthread_mutex_unlock(&(params()->death_note));
-  return (0);
+  return (pthread_mutex_unlock(&(params()->death_note)));
 }
 
 int even_philospher(philosopher_t *p)
@@ -89,9 +80,7 @@ int even_philospher(philosopher_t *p)
   pthread_mutex_lock(&(params()->death_note));
   if (params()->death)
   {
-    pthread_mutex_unlock(&(params()->death_note));
-    pthread_mutex_unlock(&(p->right->mtx));
-    pthread_mutex_unlock(&(params()->print_lock));
+    even_philosopher_first_con(p);
     return (1);
   }
   pthread_mutex_unlock(&(params()->death_note));
@@ -104,16 +93,10 @@ int even_philospher(philosopher_t *p)
     pthread_mutex_unlock(&(p->right->mtx));
     return (1);
   }
-  pthread_mutex_unlock(&(params()->death_note));
-  pthread_mutex_lock(&(p->left->mtx));
-  pthread_mutex_lock(&(params()->print_lock));
-  pthread_mutex_lock(&(params()->death_note));
+  even_philosopher_non_con(p);
   if (params()->death)
   {
-    pthread_mutex_unlock(&(params()->death_note));
-    pthread_mutex_unlock(&(p->right->mtx));
-    pthread_mutex_unlock(&(params()->print_lock));
-    pthread_mutex_unlock(&(p->left->mtx));
+    even_philosopher_second_con(p);
     return (1);
   }
   pthread_mutex_unlock(&(params()->death_note));

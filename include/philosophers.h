@@ -55,3 +55,11 @@ int clean();
 int error_handling(int ac, char **av);
 params_t *params();
 void ryuku();
+
+
+void odd_philosopher_first_con(philosopher_t *p);
+void odd_philosopher_non_con(philosopher_t *p);
+void odd_philosopher_second_con(philosopher_t *p);
+void even_philosopher_first_con(philosopher_t *p);
+void even_philosopher_non_con(philosopher_t *p);
+void even_philosopher_second_con(philosopher_t *p);
