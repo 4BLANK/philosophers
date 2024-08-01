@@ -2,28 +2,19 @@
 
 int pick_forks(philosopher_t *p)
 {
-  if (params()->number_of_philosophers == 1)
-  {
-    pthread_mutex_lock(&(p->left->mtx));
-    pthread_mutex_lock(&(params()->print_lock));
-    printf("%lld philosopher %d picked a fork\n", fix_time(), p->id);
-    pthread_mutex_unlock(&(params()->print_lock));
-    while (!(params()->death))
-      death_check(p);
-    pthread_mutex_unlock(&(p->left->mtx));
+  if (one_tiny_philo(p))
     return (1);
-  }
   if (p->id % 2 != 0)
   {
     if (odd_philosopher(p))
       return (1);
   }
   else
-{
+  {
     if (even_philospher(p))
       return (1);
   }
-  printf("%lld philosopher %d picked a fork\n", fix_time(), p->id);
+  printf("%lu philosopher %d picked a fork\n", fix_time(), p->id);
   pthread_mutex_unlock(&(params()->print_lock));
   return (0);
 }
@@ -36,17 +27,16 @@ void put_down_forks(philosopher_t *p)
 
 int eat(philosopher_t *p)
 {
-  death_check(p);
   if (pick_forks(p))
     return (1);
   pthread_mutex_lock(&(params()->print_lock));
-  printf("%lld philosopher %d is eating\n", fix_time(), p->id);
+  printf("%lu philosopher %d is eating\n", fix_time(), p->id);
   pthread_mutex_unlock(&(params()->print_lock));
   usleep(__to_milli__(params()->time_to_eat));
-  p->last_meal = fix_time();
   pthread_mutex_lock(&(params()->print_lock));
-  pthread_mutex_unlock(&(params()->print_lock));
+  p->last_meal = fix_time();
   p->number_of_meals++;
+  pthread_mutex_unlock(&(params()->print_lock));
   return (0);
 }
 
@@ -59,10 +49,11 @@ int p_sleep(philosopher_t *p)
     pthread_mutex_unlock(&(params()->print_lock));
     return (1);
   }
-  printf("%lld philosopher %d is sleeping\n", fix_time(), p->id);
+  printf("%lu philosopher %d is sleeping\n", fix_time(), p->id);
   pthread_mutex_unlock(&(params()->print_lock));
   usleep(__to_milli__(params()->time_to_sleep));
-  death_check(p);
+  if (params()->death)
+    return (1);
   return (0);
 }
 
@@ -83,10 +74,11 @@ void *start(void *p)
     if (!params()->death)
     {
       pthread_mutex_lock(&(params()->print_lock));
-      printf("%lld philosopher %d is thinking\n", fix_time(), philosopher->id);
+      printf("%lu philosopher %d is thinking\n", fix_time(), philosopher->id);
       pthread_mutex_unlock(&(params()->print_lock));
     }
-    death_check(p);
+    if (params()->death)
+      return (NULL);
   }
   return (NULL);
 }

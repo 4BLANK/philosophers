@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <limits.h>
+#include <string.h>
 #include <sys/time.h>
 #include <pthread.h>
 
@@ -24,16 +26,16 @@ typedef struct philospher_s
 
 typedef struct params_s 
 {
-  int number_of_philosophers;
-  int time_to_die;
-  int time_to_eat;
-  int time_to_sleep;
-  int number_of_times_philosopher_must_eat;
+  unsigned long number_of_philosophers;
+  unsigned long time_to_die;
+  unsigned long time_to_eat;
+  unsigned long time_to_sleep;
+  unsigned long number_of_times_philosopher_must_eat;
   int death;
-  long long start_instant;
+  unsigned long start_instant;
   int ac;
+  pthread_mutex_t death_note;
   pthread_mutex_t print_lock;
-  pthread_mutex_t lock;
   philosopher_t **list_p;
   fork_t **list_f;
 } params_t;
@@ -42,11 +44,14 @@ void create_forks();
 void create_philosophers();
 void *start(void *p);
 void join_philosophers();
-long long fix_time();
+unsigned long fix_time();
 void death_check(philosopher_t *p);
 int even_philospher(philosopher_t *p);
 int odd_philosopher(philosopher_t *p);
 void clean_philosophers();
 void clean_forks();
+int one_tiny_philo(philosopher_t *p);
 int clean();
+int error_handling(int ac, char **av);
 params_t *params();
+void ryuku();
