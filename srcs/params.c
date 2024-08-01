@@ -1,8 +1,8 @@
 #include "../include/philosophers.h"
 
-params_t *params()
+t_params	*params(void)
 {
-  static params_t params;
+	static t_params	params;
 
-  return (&params);
+	return (&params);
 }

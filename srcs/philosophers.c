@@ -1,39 +1,40 @@
 #include "../include/philosophers.h"
 
-void init_params(int ac, char **av)
+void	init_params(int ac, char **av)
 {
-  pthread_mutex_init(&(params()->print_lock), NULL);
-  pthread_mutex_init(&(params()->death_note), NULL);
-  pthread_mutex_lock(&(params()->print_lock));
-  params()->number_of_philosophers = (unsigned long)atol(av[1]);
-  params()->time_to_die = (unsigned long)atol(av[2]);
-  params()->time_to_eat = (unsigned long)atol(av[3]);
-  params()->time_to_sleep = (unsigned long)atol(av[4]);
-  params()->number_of_times_philosopher_must_eat = 0;
-  params()->ac = ac;
-  params()->death = 0;
-  if (ac == 6)
-    params()->number_of_times_philosopher_must_eat = (unsigned long)atoi(av[5]);
-  params()->start_instant = 0;
-  params()->start_instant = fix_time();
-  pthread_mutex_unlock(&(params()->print_lock));
-  create_forks();
-  create_philosophers();
-  ryuku();
-  join_philosophers();
+	pthread_mutex_init(&(params()->print_lock), NULL);
+	pthread_mutex_init(&(params()->death_note), NULL);
+	pthread_mutex_lock(&(params()->print_lock));
+	params()->number_of_philosophers = (unsigned long)atol(av[1]);
+	params()->time_to_die = (unsigned long)atol(av[2]);
+	params()->time_to_eat = (unsigned long)atol(av[3]);
+	params()->time_to_sleep = (unsigned long)atol(av[4]);
+	params()->number_of_times_philosopher_must_eat = 0;
+	params()->ac = ac;
+	params()->death = 0;
+	if (ac == 6)
+		params()->number_of_times_philosopher_must_eat = (unsigned long) \
+				atoi(av[5]);
+	params()->start_instant = 0;
+	params()->start_instant = fix_time();
+	pthread_mutex_unlock(&(params()->print_lock));
+	create_forks();
+	create_philosophers();
+	ryuku();
+	join_philosophers();
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-  if(ac == 5 || ac == 6)
-  {
-    if (error_handling(ac, av))
-    {
-      printf("Error\n");
-      return (1);
-    }
-    init_params(ac, av);
-    clean();
-  }
-  return (0);
+	if (ac == 5 || ac == 6)
+	{
+		if (error_handling(ac, av))
+		{
+			printf("Error\n");
+			return (1);
+		}
+		init_params(ac, av);
+		clean();
+	}
+	return (0);
 }
