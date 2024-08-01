@@ -65,7 +65,7 @@ void *start(void *p)
   if (philosopher->id % 2 == 0)
     usleep(200);
   while ((((params()->ac == 6) && philosopher->number_of_meals != params()->number_of_times_philosopher_must_eat))
-  || (params()->ac == 5) && !(params()->death))
+  || (params()->ac == 5))
   {
     if (eat(philosopher))
       break ;
