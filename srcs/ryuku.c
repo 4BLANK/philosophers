@@ -22,7 +22,7 @@ void	*job(void *p)
 	while (!params()->death)
 	{
 		if (!params()->death && fix_time()
-			- params()->list_p[i]->last_meal >= params()->time_to_die)
+			- params()->list_p[i]->last_meal > params()->time_to_die)
 		{
 			pthread_mutex_lock(&(params()->death_note));
 			params()->death = 1;

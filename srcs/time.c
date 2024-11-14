@@ -12,6 +12,20 @@
 
 #include "../include/philosophers.h"
 
+void    ft_usleep(long time_to_sleep)
+{
+  /*usleep(time_to_sleep);*/
+  long    start_time;
+
+  start_time = fix_time() * 1000;
+  while (fix_time() * 1000 - start_time < time_to_sleep)
+  {
+    if (params()->death)
+      break;
+    usleep(time_to_sleep / 10);
+  }
+}
+
 unsigned long	fix_time(void)
 {
 	struct timeval	t;

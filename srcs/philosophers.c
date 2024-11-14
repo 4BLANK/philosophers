@@ -30,6 +30,8 @@ void	init_params(int ac, char **av)
 	params()->start_instant = 0;
 	params()->start_instant = fix_time();
 	pthread_mutex_unlock(&(params()->print_lock));
+  if (error_handling2())
+    return ;
 	create_forks();
 	create_philosophers();
 	ryuku();

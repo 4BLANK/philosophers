@@ -49,3 +49,19 @@ int	error_handling(int ac, char **av)
 	}
 	return (0);
 }
+
+int	error_handling2()
+{
+  if (params()->number_of_philosophers <= 0 \
+    || params()->number_of_philosophers > 250 \
+    || params()->time_to_die <= 0 \
+    || params()->time_to_eat <= 0 \
+    || params()->time_to_sleep <= 0 \
+    || (params()->number_of_times_philosopher_must_eat <= 0
+  && params()->ac == 6))
+  {
+    printf("Error11\n");
+    return (1);
+  }
+  return (0);
+}
