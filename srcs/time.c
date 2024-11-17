@@ -14,7 +14,6 @@
 
 void    ft_usleep(long time_to_sleep)
 {
-  /*usleep(time_to_sleep);*/
   long    start_time;
 
   start_time = fix_time() * 1000;
@@ -22,7 +21,7 @@ void    ft_usleep(long time_to_sleep)
   {
     if (params()->death)
       break;
-    usleep(time_to_sleep / 10);
+    usleep(100);
   }
 }
 

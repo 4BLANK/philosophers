@@ -45,7 +45,7 @@ int	eat(t_philosopher *p)
 	printf("%lu philosopher %d is eating\n", fix_time(), p->id);
 	p->last_meal = fix_time();
 	pthread_mutex_unlock(&(params()->print_lock));
-	ft_usleep(1000 * (params()->time_to_sleep));
+	ft_usleep(1000 * (params()->time_to_eat));
 	pthread_mutex_lock(&(params()->print_lock));
 	p->number_of_meals++;
 	pthread_mutex_unlock(&(params()->print_lock));
