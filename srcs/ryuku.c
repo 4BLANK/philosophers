@@ -25,11 +25,11 @@ void	*job(void *p)
 			- params()->list_p[i]->last_meal > params()->time_to_die)
 		{
 			pthread_mutex_lock(&(params()->death_note));
-			params()->death = 1;
+			params()->death = i + 1;
 			pthread_mutex_unlock(&(params()->death_note));
 			pthread_mutex_lock(&(params()->print_lock));
-			printf("%lu philosopher %d is dead :p\n", fix_time(),
-				params()->list_p[i]->id);
+			/*printf("%lu philosopher %d is dead :p\n", fix_time(),*/
+				/*params()->list_p[i]->id);*/
 			pthread_mutex_unlock(&(params()->print_lock));
 			return (NULL);
 		}
