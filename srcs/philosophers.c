@@ -48,7 +48,8 @@ int	main(int ac, char **av)
 			return (1);
 		}
 		init_params(ac, av);
-    printf("%lu philosopher %d is dead :p\n", fix_time(), params()->death);
+    if (params()->death)
+      printf("%lu philosopher %d is dead :p\n", fix_time(), params()->death);
 		clean();
 	}
 	return (0);

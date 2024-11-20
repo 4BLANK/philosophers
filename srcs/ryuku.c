@@ -24,13 +24,13 @@ void	*job(void *p)
 		if (!params()->death && fix_time()
 			- params()->list_p[i]->last_meal > params()->time_to_die)
 		{
+      if ((((params()->ac == 6)
+    && params()->list_p[i]->number_of_meals == params()->\
+    number_of_times_philosopher_must_eat)))
+        return (NULL);
 			pthread_mutex_lock(&(params()->death_note));
 			params()->death = i + 1;
 			pthread_mutex_unlock(&(params()->death_note));
-			pthread_mutex_lock(&(params()->print_lock));
-			/*printf("%lu philosopher %d is dead :p\n", fix_time(),*/
-				/*params()->list_p[i]->id);*/
-			pthread_mutex_unlock(&(params()->print_lock));
 			return (NULL);
 		}
 		if (!params()->list_p[++i])

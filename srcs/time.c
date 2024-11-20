@@ -12,17 +12,22 @@
 
 #include "../include/philosophers.h"
 
-void    ft_usleep(long time_to_sleep)
+int    ft_usleep(long time_to_sleep, int meals_eaten)
 {
   long    start_time;
 
   start_time = fix_time() * 1000;
   while (fix_time() * 1000 - start_time < time_to_sleep)
   {
+    if (params()->ac == 6 && meals_eaten == params()->number_of_times_philosopher_must_eat)
+      return (1);
     if (params()->death)
       break;
     usleep(100);
+    if (params()->ac == 6 && meals_eaten == params()->number_of_times_philosopher_must_eat)
+      return (1);
   }
+  return (0);
 }
 
 unsigned long	fix_time(void)

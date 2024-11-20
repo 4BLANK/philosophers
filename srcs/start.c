@@ -45,8 +45,9 @@ int	eat(t_philosopher *p)
 	printf("%lu philosopher %d is eating\n", fix_time(), p->id);
 	p->last_meal = fix_time();
 	pthread_mutex_unlock(&(params()->print_lock));
-	ft_usleep(1000 * (params()->time_to_eat));
-	pthread_mutex_lock(&(params()->print_lock));
+  if (ft_usleep(1000 * (params()->time_to_eat), p->number_of_meals))
+    return (1);
+  pthread_mutex_lock(&(params()->print_lock));
 	p->number_of_meals++;
 	pthread_mutex_unlock(&(params()->print_lock));
 	return (0);
@@ -63,9 +64,10 @@ int	p_sleep(t_philosopher *p)
 	}
 	printf("%lu philosopher %d is sleeping\n", fix_time(), p->id);
 	pthread_mutex_unlock(&(params()->print_lock));
-	ft_usleep(1000 * (params()->time_to_sleep));
-	if (params()->death)
-		return (1);
+  if (ft_usleep(1000 * (params()->time_to_sleep), p->number_of_meals))
+    return (1);
+  if (params()->death)
+    return (1);
 	return (0);
 }
 
@@ -75,14 +77,16 @@ void	*start(void *p)
 
   philosopher = (t_philosopher *)p;
   if (philosopher->id % 2 == 0)
-    ft_usleep(200);
+    ft_usleep(200, 0);
   while ((((params()->ac == 6)
     && philosopher->number_of_meals != params()->\
     number_of_times_philosopher_must_eat))
     || (params()->ac == 5))
   {
-    if (eat(philosopher))
+    int a;
+    if (a = eat(philosopher))
       break ;
+    printf("%d\n", a);
     if (p_sleep(philosopher))
       break ;
     if (!params()->death)

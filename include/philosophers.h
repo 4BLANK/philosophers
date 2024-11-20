@@ -72,5 +72,5 @@ void				odd_philosopher_second_con(t_philosopher *p);
 void				even_philosopher_first_con(t_philosopher *p);
 void				even_philosopher_non_con(t_philosopher *p);
 void				even_philosopher_second_con(t_philosopher *p);
-void    ft_usleep(long time_to_sleep);
+int    ft_usleep(long time_to_sleep, int meals_eaten);
 int	error_handling2();
