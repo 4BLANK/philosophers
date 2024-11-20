@@ -46,6 +46,7 @@ typedef struct params_s
 	int				ac;
 	pthread_mutex_t	death_note;
 	pthread_mutex_t	print_lock;
+	pthread_mutex_t mutex_last_meal;
 	t_philosopher	**list_p;
 	t_fork			**list_f;
 }					t_params;
@@ -74,3 +75,4 @@ void				even_philosopher_non_con(t_philosopher *p);
 void				even_philosopher_second_con(t_philosopher *p);
 int    ft_usleep(long time_to_sleep, int meals_eaten);
 int	error_handling2();
+int check_death();

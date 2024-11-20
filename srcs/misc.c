@@ -59,57 +59,51 @@ int	ft_strlen(char *str)
 int	odd_philosopher(t_philosopher *p)
 {
 	pthread_mutex_lock(&(p->left->mtx));
-	pthread_mutex_lock(&(params()->print_lock));
-	pthread_mutex_lock(&(params()->death_note));
-	if (params()->death)
+	if (check_death())
 	{
 		odd_philosopher_first_con(p);
 		return (1);
 	}
-	pthread_mutex_unlock(&(params()->death_note));
+	pthread_mutex_lock(&(params()->print_lock));
 	printf("%lu philosopher %d picked a fork\n", fix_time(), p->id);
 	pthread_mutex_unlock(&(params()->print_lock));
-	pthread_mutex_lock(&(params()->death_note));
-	if (params()->death)
+	if (check_death())
 	{
-		pthread_mutex_unlock(&(params()->death_note));
 		pthread_mutex_unlock(&(p->left->mtx));
 		return (1);
 	}
-	odd_philosopher_non_con(p);
-	if (params()->death)
+	pthread_mutex_lock(&(p->right->mtx));
+	if (check_death())
 	{
-		odd_philosopher_second_con(p);
+		pthread_mutex_unlock(&(p->left->mtx));
+		pthread_mutex_unlock(&(p->right->mtx));
 		return (1);
 	}
-	return (pthread_mutex_unlock(&(params()->death_note)));
+	return (0);
 }
 
 int	even_philospher(t_philosopher *p)
 {
 	pthread_mutex_lock(&(p->right->mtx));
-	pthread_mutex_lock(&(params()->print_lock));
-	pthread_mutex_lock(&(params()->death_note));
-	if (params()->death)
+	if (check_death())
 	{
 		even_philosopher_first_con(p);
 		return (1);
 	}
-	pthread_mutex_unlock(&(params()->death_note));
+	pthread_mutex_lock(&(params()->print_lock));
 	printf("%lu philosopher %d picked a fork\n", fix_time(), p->id);
 	pthread_mutex_unlock(&(params()->print_lock));
-	pthread_mutex_lock(&(params()->death_note));
-	if (params()->death)
+	if (check_death())
 	{
-		pthread_mutex_unlock(&(params()->death_note));
 		pthread_mutex_unlock(&(p->right->mtx));
 		return (1);
 	}
-	even_philosopher_non_con(p);
-	if (params()->death)
+	pthread_mutex_lock(&(p->left->mtx));
+	if (check_death())
 	{
-		even_philosopher_second_con(p);
+		pthread_mutex_unlock(&(p->right->mtx));
+		pthread_mutex_unlock(&(p->left->mtx));
 		return (1);
 	}
-	return (pthread_mutex_unlock(&(params()->death_note)));
+	return (0);
 }
