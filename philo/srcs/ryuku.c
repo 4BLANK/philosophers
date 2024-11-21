@@ -26,7 +26,8 @@ void	*job(void *p)
 			- params()->list_p[i]->last_meal > params()->time_to_die)
 		{
 			if ((((params()->ac == 6)
-						&& params()->list_p[i]->number_of_meals == params()->number_of_times_philosopher_must_eat)))
+						&& params()->list_p[i]->number_of_meals == \
+						params()->number_of_times_philosopher_must_eat)))
 				return (pthread_mutex_unlock(&(params()->mutex_last_meal)),
 					NULL);
 			pthread_mutex_lock(&(params()->death_note));

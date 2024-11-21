@@ -22,22 +22,21 @@ int	check_death(void)
 	return (stop);
 }
 
-void print_t(int id)
+void	print_t(int id)
 {
-  pthread_mutex_lock(&(params()->print_lock));
-  printf("%lu philosopher %d is thinking\n", fix_time(),
-         id);
-  pthread_mutex_unlock(&(params()->print_lock));
+	pthread_mutex_lock(&(params()->print_lock));
+	printf("%lu philosopher %d is thinking\n", fix_time(), id);
+	pthread_mutex_unlock(&(params()->print_lock));
 }
 
-void print_s(int id)
+void	print_s(int id)
 {
 	pthread_mutex_lock(&(params()->print_lock));
 	printf("%lu philosopher %d is sleeping\n", fix_time(), id);
 	pthread_mutex_unlock(&(params()->print_lock));
 }
 
-void print_e(int id)
+void	print_e(int id)
 {
 	pthread_mutex_lock(&(params()->print_lock));
 	printf("%lu philosopher %d is eating\n", fix_time(), id);

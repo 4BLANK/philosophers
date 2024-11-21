@@ -26,7 +26,8 @@ void	init_params(int ac, char **av)
 	params()->ac = ac;
 	params()->death = 0;
 	if (ac == 6)
-		params()->number_of_times_philosopher_must_eat = (unsigned long)atoi(av[5]);
+		params()->number_of_times_philosopher_must_eat \
+			= (unsigned long)atoi(av[5]);
 	params()->start_instant = 0;
 	params()->start_instant = fix_time();
 	pthread_mutex_unlock(&(params()->print_lock));

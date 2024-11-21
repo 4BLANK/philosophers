@@ -42,7 +42,7 @@ int	eat(t_philosopher *p)
 {
 	if (pick_forks(p))
 		return (1);
-  print_e(p->id);
+	print_e(p->id);
 	pthread_mutex_lock(&(params()->mutex_last_meal));
 	p->last_meal = fix_time();
 	pthread_mutex_unlock(&(params()->mutex_last_meal));
@@ -59,7 +59,7 @@ int	p_sleep(t_philosopher *p)
 	put_down_forks(p);
 	if (check_death())
 		return (1);
-  print_s(p->id);
+	print_s(p->id);
 	if (ft_usleep(1000 * (params()->time_to_sleep), p->number_of_meals))
 		return (1);
 	if (check_death())
@@ -76,7 +76,7 @@ void	*start(void *p)
 		ft_usleep(200, 0);
 	while ((((params()->ac == 6)
 				&& philosopher->number_of_meals != \
-	params()->number_of_times_philosopher_must_eat))
+				params()->number_of_times_philosopher_must_eat))
 		|| (params()->ac == 5))
 	{
 		if (eat(philosopher))
@@ -85,7 +85,7 @@ void	*start(void *p)
 			break ;
 		if (!check_death())
 		{
-      print_t(philosopher->id);
+			print_t(philosopher->id);
 		}
 		if (params()->number_of_philosophers % 2 != 0)
 			usleep(1000);
