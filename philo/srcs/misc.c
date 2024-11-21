@@ -61,7 +61,7 @@ int	odd_philosopher(t_philosopher *p)
 	pthread_mutex_lock(&(p->left->mtx));
 	if (check_death())
 	{
-		odd_philosopher_first_con(p);
+    pthread_mutex_unlock(&(p->left->mtx));
 		return (1);
 	}
 	pthread_mutex_lock(&(params()->print_lock));
@@ -87,7 +87,7 @@ int	even_philospher(t_philosopher *p)
 	pthread_mutex_lock(&(p->right->mtx));
 	if (check_death())
 	{
-		even_philosopher_first_con(p);
+    pthread_mutex_unlock(&(p->right->mtx));
 		return (1);
 	}
 	pthread_mutex_lock(&(params()->print_lock));

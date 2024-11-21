@@ -12,18 +12,34 @@
 
 #include "../include/philosophers.h"
 
-void	odd_philosopher_first_con(t_philosopher *p)
+int	check_death(void)
 {
-	pthread_mutex_unlock(&(p->left->mtx));
-}
+	int	stop;
 
-void	odd_philosopher_non_con(t_philosopher *p)
-{
-	pthread_mutex_unlock(&(params()->death_note));
 	pthread_mutex_lock(&(params()->death_note));
+	stop = params()->death;
+	pthread_mutex_unlock(&(params()->death_note));
+	return (stop);
 }
 
-void	odd_philosopher_second_con(t_philosopher *p)
+void print_t(int id)
 {
-	pthread_mutex_unlock(&(p->left->mtx));
+  pthread_mutex_lock(&(params()->print_lock));
+  printf("%lu philosopher %d is thinking\n", fix_time(),
+         id);
+  pthread_mutex_unlock(&(params()->print_lock));
+}
+
+void print_s(int id)
+{
+	pthread_mutex_lock(&(params()->print_lock));
+	printf("%lu philosopher %d is sleeping\n", fix_time(), id);
+	pthread_mutex_unlock(&(params()->print_lock));
+}
+
+void print_e(int id)
+{
+	pthread_mutex_lock(&(params()->print_lock));
+	printf("%lu philosopher %d is eating\n", fix_time(), id);
+	pthread_mutex_unlock(&(params()->print_lock));
 }

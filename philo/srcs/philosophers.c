@@ -12,7 +12,7 @@
 
 #include "../include/philosophers.h"
 
-void init_params(int ac, char **av)
+void	init_params(int ac, char **av)
 {
 	pthread_mutex_init(&(params()->print_lock), NULL);
 	pthread_mutex_init(&(params()->death_note), NULL);
@@ -26,20 +26,19 @@ void init_params(int ac, char **av)
 	params()->ac = ac;
 	params()->death = 0;
 	if (ac == 6)
-		params()->number_of_times_philosopher_must_eat = (unsigned long)
-			atoi(av[5]);
+		params()->number_of_times_philosopher_must_eat = (unsigned long)atoi(av[5]);
 	params()->start_instant = 0;
 	params()->start_instant = fix_time();
 	pthread_mutex_unlock(&(params()->print_lock));
 	if (error_handling2())
-		return;
+		return ;
 	create_forks();
 	create_philosophers();
 	ryuku();
 	join_philosophers();
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac == 5 || ac == 6)
 	{
@@ -50,7 +49,8 @@ int main(int ac, char **av)
 		}
 		init_params(ac, av);
 		if (params()->death)
-			printf("%lu philosopher %d is dead :p\n", fix_time(), params()->death);
+			printf("%lu philosopher %d is dead :p\n", fix_time(),
+				params()->death);
 		clean();
 	}
 	return (0);
