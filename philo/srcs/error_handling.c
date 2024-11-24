@@ -29,9 +29,18 @@ int	check_for_non_digits(char *str)
 int	check_numbers_validity(char *str)
 {
 	unsigned long	num;
+	int				i;
 
 	num = (unsigned long)atol(str);
-	if (strlen(str) >= 20)
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < '1' || str[i] >= '9')
+			i++;
+		else
+			break ;
+	}
+	if (strlen(str + i) >= 20)
 		return (1);
 	return (0);
 }
