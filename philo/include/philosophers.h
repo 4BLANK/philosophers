@@ -29,8 +29,8 @@ typedef struct philospher_s
 	pthread_t		thread;
 	t_fork			*left;
 	t_fork			*right;
-	unsigned long				number_of_meals;
-	unsigned long		last_meal;
+	unsigned long	number_of_meals;
+	unsigned long	last_meal;
 	int				id;
 }					t_philosopher;
 
@@ -67,7 +67,8 @@ int					error_handling(int ac, char **av);
 t_params			*params(void);
 void				ryuku(void);
 
-int	ft_usleep(unsigned long time_to_sleep, unsigned long meals_eaten);
+int					ft_usleep(unsigned long time_to_sleep,
+						unsigned long meals_eaten);
 int					error_handling2(void);
 int					check_death(void);
 void				print_t(int id);
