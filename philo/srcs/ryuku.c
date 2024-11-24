@@ -15,7 +15,7 @@
 
 void	*job(void *p)
 {
-	int	i;
+	unsigned long	i;
 
 	i = 0;
 	(void)p;

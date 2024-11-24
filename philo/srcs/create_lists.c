@@ -14,7 +14,7 @@
 
 void	create_forks(void)
 {
-	int	i;
+	unsigned long	i;
 
 	i = 0;
 	params()->list_f = malloc((sizeof(t_fork *))
@@ -58,7 +58,7 @@ void	create_philosopher_thread(int i)
 
 void	create_philosophers(void)
 {
-	int	i;
+	unsigned long	i;
 
 	i = 0;
 	params()->list_p = malloc((sizeof(t_philosopher *))
@@ -81,7 +81,7 @@ void	create_philosophers(void)
 
 void	join_philosophers(void)
 {
-	int	i;
+	unsigned long	i;
 
 	i = 0;
 	while (i < params()->number_of_philosophers)

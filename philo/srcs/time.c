@@ -12,9 +12,9 @@
 
 #include "../include/philosophers.h"
 
-int	ft_usleep(long time_to_sleep, int meals_eaten)
+int	ft_usleep(unsigned long time_to_sleep, unsigned long meals_eaten)
 {
-	long	start_time;
+	unsigned long	start_time;
 
 	start_time = fix_time() * 1000;
 	while (fix_time() * 1000 - start_time < time_to_sleep)

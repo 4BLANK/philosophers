@@ -28,10 +28,8 @@ int	check_for_non_digits(char *str)
 
 int	check_numbers_validity(char *str)
 {
-	unsigned long	num;
-	int				i;
+	unsigned long				i;
 
-	num = (unsigned long)atol(str);
 	i = 0;
 	while (str[i])
 	{
