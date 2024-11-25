@@ -23,7 +23,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf srcs/*.o
+	rm -rf $(OBJS)
 
 fclean: clean
 	rm -rf $(NAME)
