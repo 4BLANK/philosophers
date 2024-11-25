@@ -10,13 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/time.h>
-#include <unistd.h>
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
+# include <limits.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 typedef struct fork_s
 {
@@ -74,3 +76,4 @@ int					check_death(void);
 void				print_t(int id);
 void				print_s(int id);
 void				print_e(int id);
+#endif
