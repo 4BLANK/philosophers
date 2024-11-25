@@ -29,7 +29,3 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
-#
-# all:
-# 	gcc -Wall -Werror -Wextra srcs/* -o philo
-# 	#gcc -fsanitize=thread -g srcs/* -o philo
