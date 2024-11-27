@@ -1,5 +1,5 @@
 CC= cc
-CFLAGS= -Wall -Werror -Wextra
+CFLAGS= -Wall -Werror -Wextra -ggdb
 SRCS= ./srcs/misc.c \
 			./srcs/time.c \
 			./srcs/clean.c \

@@ -6,7 +6,7 @@
 /*   By: amasdouq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:34:19 by amasdouq          #+#    #+#             */
-/*   Updated: 2024/11/27 15:01:09 by amasdouq         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:28:12 by amasdouq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	check_numbers_validity(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] < '1' || str[i] >= '9')
+		if (str[i] < '1' || str[i] > '9')
 			i++;
 		else
 			break ;
 	}
-	if (ft_strlen(str + i) >= 20)
+	if (ft_strlen(str + i) > 10)
 		return (1);
 	return (0);
 }
