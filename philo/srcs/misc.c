@@ -6,7 +6,7 @@
 /*   By: amasdouq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:34:27 by amasdouq          #+#    #+#             */
-/*   Updated: 2024/08/01 13:34:29 by amasdouq         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:00:03 by amasdouq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,12 @@ long	ft_atol(const char *str)
 
 int	ft_strlen(char *str)
 {
-	if (!(*str))
-		return (0);
-	return (ft_strlen(str++) + 1);
+	unsigned long i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
 int	odd_philosopher(t_philosopher *p)

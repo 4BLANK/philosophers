@@ -6,7 +6,7 @@
 /*   By: amasdouq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:35:25 by amasdouq          #+#    #+#             */
-/*   Updated: 2024/08/01 13:35:27 by amasdouq         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:02:02 by amasdouq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ int					check_death(void);
 void				print_t(int id);
 void				print_s(int id);
 void				print_e(int id);
+int	ft_strlen(char *str);
 #endif

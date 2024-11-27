@@ -6,7 +6,7 @@
 /*   By: amasdouq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:35:03 by amasdouq          #+#    #+#             */
-/*   Updated: 2024/08/01 13:35:04 by amasdouq         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:04:49 by amasdouq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,4 @@ unsigned long	fix_time(void)
 	gettimeofday(&t, NULL);
 	return ((unsigned long)((unsigned long)(t.tv_sec * 1000)
 			+ (unsigned long)(t.tv_usec / 1000)) - params()->start_instant);
-}
-
-void	unlock_all_forks(void)
-{
-	int	i;
-
-	i = 0;
-	while (params()->list_f[i])
-	{
-		pthread_mutex_unlock(&(params()->list_f[i]->mtx));
-		i++;
-	}
 }

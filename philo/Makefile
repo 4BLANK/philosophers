@@ -4,7 +4,6 @@ SRCS= ./srcs/misc.c \
 			./srcs/time.c \
 			./srcs/clean.c \
 			./srcs/misc2.c \
-			./srcs/misc3.c \
 			./srcs/ryuku.c \
 			./srcs/start.c \
 			./srcs/params.c \
