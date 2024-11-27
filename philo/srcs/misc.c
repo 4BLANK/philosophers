@@ -51,7 +51,7 @@ long	ft_atol(const char *str)
 
 int	ft_strlen(char *str)
 {
-	unsigned long i;
+	unsigned long	i;
 
 	i = 0;
 	while (str[i])

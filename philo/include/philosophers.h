@@ -76,5 +76,5 @@ int					check_death(void);
 void				print_t(int id);
 void				print_s(int id);
 void				print_e(int id);
-int	ft_strlen(char *str);
+int					ft_strlen(char *str);
 #endif
