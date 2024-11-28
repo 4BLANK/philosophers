@@ -65,7 +65,7 @@ int	error_handling2(void)
 		|| (params()->number_of_times_philosopher_must_eat <= 0
 			&& params()->ac == 6))
 	{
-		printf("Error11\n");
+		printf("Error\n");
 		return (1);
 	}
 	return (0);

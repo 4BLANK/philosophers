@@ -18,10 +18,10 @@ void	init_params(int ac, char **av)
 	pthread_mutex_init(&(params()->death_note), NULL);
 	pthread_mutex_init(&(params()->mutex_last_meal), NULL);
 	pthread_mutex_lock(&(params()->print_lock));
-	params()->number_of_philosophers = (unsigned long)atol(av[1]);
-	params()->time_to_die = (unsigned long)atol(av[2]);
-	params()->time_to_eat = (unsigned long)atol(av[3]);
-	params()->time_to_sleep = (unsigned long)atol(av[4]);
+	params()->number_of_philosophers = (unsigned long)ft_atol(av[1]);
+	params()->time_to_die = (unsigned long)ft_atol(av[2]);
+	params()->time_to_eat = (unsigned long)ft_atol(av[3]);
+	params()->time_to_sleep = (unsigned long)ft_atol(av[4]);
 	params()->number_of_times_philosopher_must_eat = 0;
 	params()->ac = ac;
 	params()->death = 0;
@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 		}
 		init_params(ac, av);
 		if (params()->death)
-			printf("%lu philosopher %d is dead :p\n", fix_time(),
+			printf("%lu %d died\n", fix_time(),
 				params()->death);
 		clean();
 	}

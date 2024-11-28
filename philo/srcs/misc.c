@@ -18,7 +18,7 @@ int	one_tiny_philo(t_philosopher *p)
 	{
 		pthread_mutex_lock(&(p->left->mtx));
 		pthread_mutex_lock(&(params()->print_lock));
-		printf("%lu philosopher %d picked a fork\n", fix_time(), p->id);
+		printf("%lu %d has taken a fork\n", fix_time(), p->id);
 		pthread_mutex_unlock(&(params()->print_lock));
 		pthread_mutex_unlock(&(p->left->mtx));
 		return (1);
@@ -68,7 +68,7 @@ int	odd_philosopher(t_philosopher *p)
 		return (1);
 	}
 	pthread_mutex_lock(&(params()->print_lock));
-	printf("%lu philosopher %d picked a fork\n", fix_time(), p->id);
+	printf("%lu %d has taken a fork\n", fix_time(), p->id);
 	pthread_mutex_unlock(&(params()->print_lock));
 	if (check_death())
 	{
@@ -94,7 +94,7 @@ int	even_philospher(t_philosopher *p)
 		return (1);
 	}
 	pthread_mutex_lock(&(params()->print_lock));
-	printf("%lu philosopher %d picked a fork\n", fix_time(), p->id);
+	printf("%lu %d has taken a fork\n", fix_time(), p->id);
 	pthread_mutex_unlock(&(params()->print_lock));
 	if (check_death())
 	{

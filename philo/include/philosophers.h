@@ -77,4 +77,5 @@ void				print_t(int id);
 void				print_s(int id);
 void				print_e(int id);
 int					ft_strlen(char *str);
+long				ft_atol(const char *str);
 #endif

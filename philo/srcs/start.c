@@ -27,7 +27,7 @@ int	pick_forks(t_philosopher *p)
 			return (1);
 	}
 	pthread_mutex_lock(&(params()->print_lock));
-	printf("%lu philosopher %d picked a fork\n", fix_time(), p->id);
+	printf("%lu %d has taken a fork\n", fix_time(), p->id);
 	pthread_mutex_unlock(&(params()->print_lock));
 	return (0);
 }
